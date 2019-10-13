@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class Bing {
+public class BingTest {
 
     private WebDriver driver;
 
@@ -37,6 +37,7 @@ public class Bing {
 
         // Prześlij formularz
         element.submit();
+
     }
 
     @After

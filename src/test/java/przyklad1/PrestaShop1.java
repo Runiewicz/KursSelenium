@@ -7,10 +7,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.util.Random;
 
-public class PrestaShop {
+
+public class PrestaShop1 {
     private WebDriver driver;
     @Before
     public void setUp() {
@@ -27,21 +27,21 @@ public class PrestaShop {
     @Test
     public void testGoogleSearch() {
         // Znajdź element wprowadzania tekstu na podstawie jego nazwy
-        WebElement hasloSzukane = driver.findElement(By.name("s"));
+        WebElement element = driver.findElement(By.name("s"));
 
         // Wyczyść teskst zapisany w elemencie
-        hasloSzukane.clear();
-
-
+        element.clear();
 
         // Wpisz informacje do wyszukania
         String[] products = {"mug", "t-shirt", "notebook"};
-        int product = new Random().nextInt(products.length);
-        String random = (products[product]);
-        hasloSzukane.sendKeys(random);
+        Random random = new Random();
+        int szukany_produkt = random.nextInt(products.length);
+        int wynik_dzielenia = szukany_produkt % products.length;
 
+
+        element.sendKeys(products[wynik_dzielenia]);
         // Prześlij formularz
-        hasloSzukane.submit();
+        element.submit();
     }
     @After
     public void tearDown() throws Exception {

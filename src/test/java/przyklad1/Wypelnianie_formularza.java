@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.List;
 import java.util.Random;
 
-public class NowyTest {
+public class Wypelnianie_formularza {
 
     private WebDriver driver;
 

@@ -27,6 +27,7 @@ public class SearchTest {
     public void testGoogleSearch() {
         // Znajdź element wprowadzania tekstu na podstawie jego nazwy
         WebElement element = driver.findElement(By.name("q"));
+
         // Wyczyść teskst zapisany w elemencie
         element.clear();
 

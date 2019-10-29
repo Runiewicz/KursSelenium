@@ -29,8 +29,6 @@ public class CreateAccount {
         driver.manage().window().maximize();
         // Przejdź do Google
         driver.get("https://prod-kurs.coderslab.pl/index.php?controller=authentication&create_account=1");
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
     }
 
     @When("^he user completes the registration form for the new account$")
@@ -42,23 +40,23 @@ public class CreateAccount {
 
         WebElement firstName = driver.findElement(By.name("firstname"));
         firstName.clear();
-        firstName.sendKeys("Ania");
+        firstName.sendKeys("Amalia");
 
         WebElement lastName = driver.findElement(By.name("lastname"));
         lastName.clear();
-        lastName.sendKeys("Testerka");
+        lastName.sendKeys("Marynik");
 
         WebElement email = driver.findElement(By.name("email"));
         email.clear();
-        email.sendKeys("anna@mailinator.com");
+        email.sendKeys("amalia@mailinator.com");
 
         WebElement password = driver.findElement(By.name("password"));
         password.clear();
-        password.sendKeys("Kwiatek5000");
+        password.sendKeys("Kwiat123");
 
         WebElement Birthdate = driver.findElement(By.name("birthday"));
         Birthdate.clear();
-        Birthdate.sendKeys("05/22/2010");
+        Birthdate.sendKeys("06/23/2001");
 
         WebElement optin = driver.findElement(By.name("optin"));
         optin.click();
@@ -70,8 +68,7 @@ public class CreateAccount {
     @And("^user clicks on Save$")
     public void userClicksOnSave() {
         // Prześlij formularz
-        WebElement savebutton = driver.findElement(By.className("btn btn-primary form-control-submit float-xs-right"));
-        savebutton.click();
+        driver.findElement(By.xpath("//*[@id=\"customer-form\"]/footer/button")).click();
     }
 
     @Then("^user has a new account on the store's website(.*)")

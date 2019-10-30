@@ -4,6 +4,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,45 +33,56 @@ public class RegistrationUser {
         Zalozkontobutton.click();
     }
 
-    @And("^Enter <E-mail> in the form field <Firstname> <Surname> <Password> <Password> <City> <Postcode> <Street> <House/apartment number>$")
-    public void enterEMailInTheFormFieldFirstnameSurnamePasswordPasswordCityPostcodeStreetHouseApartmentNumber() {
+    @And("^Enter in the form field (.*) (.*) (.*) (.*) (.*) (.*) (.*) (.*) (.*)$")
+    public void enterInTheFormFieldFirstnameSurnamePasswordPasswordCityPostcodeStreetHouseApartmentNumber
+            (String emailText,
+             String firstNameText,
+             String lastNameText,
+             String passwordText,
+             String secondPasswordText,
+             String cityText,
+             String postcodeText,
+             String streetText,
+             String numberText
+            ) {
 
         WebElement email = driver.findElement(By.name("fos_user_registration_form[email]"));
         email.clear();
-        email.sendKeys("mi@gmail.com");
+        email.sendKeys(emailText);
 
         WebElement firstName = driver.findElement(By.name("fos_user_registration_form[name]"));
         firstName.clear();
-        firstName.sendKeys("Ania");
+        firstName.sendKeys(firstNameText);
 
         WebElement lastName = driver.findElement(By.name("fos_user_registration_form[lastname]"));
         lastName.clear();
-        lastName.sendKeys("Kowalska");
+        lastName.sendKeys(lastNameText);
 
         WebElement password = driver.findElement(By.name("fos_user_registration_form[plainPassword][first]"));
         password.clear();
-        password.sendKeys("test123");
+        password.sendKeys(passwordText);
 
         WebElement secondpassword = driver.findElement(By.name("fos_user_registration_form[plainPassword][second]"));
         secondpassword.clear();
-        secondpassword.sendKeys("test123");
+        secondpassword.sendKeys(secondPasswordText);
 
         WebElement city = driver.findElement(By.name("form[city]"));
         city.clear();
-        city.sendKeys("Wrocław");
+        city.sendKeys(cityText);
 
         WebElement postcode = driver.findElement(By.name("form[postal_code]"));
         postcode.clear();
-        postcode.sendKeys("50-457");
+        postcode.sendKeys(postcodeText);
 
         WebElement street = driver.findElement(By.name("form[street]"));
         street.clear();
-        street.sendKeys("Racławicka");
+        street.sendKeys(streetText);
 
 
         WebElement number = driver.findElement(By.name("form[number]"));
         number.clear();
-        number.sendKeys("10/7");
+        number.sendKeys(numberText);
+
         WebElement regulations = driver.findElement(By.xpath("//*[@id=\"registration-main-form\"]/div[12]/input"));
         regulations.click();
 
@@ -81,10 +93,11 @@ public class RegistrationUser {
 
         driver.findElement(By.id("register-submit-btn")).click();
 
+        Assert.assertNotNull(driver.findElement(By.id("user-name")));
     }
 
     @Then("^private user has been successfully registered$")
     public void privateUserHasBeenSuccessfullyRegistered() {
+            driver.quit();
     }
-
 }
